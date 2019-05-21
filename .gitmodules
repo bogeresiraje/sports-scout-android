@@ -1,0 +1,3 @@
+[submodule "react-native-styles"]
+	path = react-native-styles
+	url = https://github.com/bogeresiraje/react-native-styles.git
