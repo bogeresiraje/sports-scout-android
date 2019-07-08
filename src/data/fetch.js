@@ -1,5 +1,5 @@
 
-const host = 'http://192.168.2.48:5000/api';
+const host = 'http://192.168.43.11:5000/api';
 
 export const getHost = {
     host: host,

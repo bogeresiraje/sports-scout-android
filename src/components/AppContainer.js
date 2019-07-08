@@ -1,110 +1,110 @@
-import React from 'react';
-import { View, StatusBar } from 'react-native';
-import {createAppContainer, createStackNavigator, createMaterialTopTabNavigator } from 'react-navigation';
-import ReplyList from './ReplyList';
-import More from './More'
-import ViewsList from './ViewsList';
-import Login from './moreComponents/Login';
-import About from './moreComponents/About';
-import TechnicalList from './moreComponents/TechnicalStaff';
-import CreateAccount from './moreComponents/CreateAccount';
-import Matches from './moreComponents/Matches';
-import Profile from './moreComponents/Profile';
-import PlayerList from './PlayerList';
-import AddPlayer from './moreComponents/AddPlayer';
-import Statistics from './moreComponents/Statistics';
-import TableStandings from './moreComponents/TableStandings';
-import Feedback from './moreComponents/Feedback';
-import ChooseAccount from './moreComponents/ChooseAccount';
-import CreateManagerAccount from './moreComponents/CreateManagerAccount';
-import CreateScoutAccount from './moreComponents/CreateScoutAccount';
-import ConfirmAccount from './moreComponents/ConfirmAccount';
-import Clubs from './moreComponents/Clubs';
-import AddClub from './moreComponents/AddClub';
-import PostView from './PostView';
+import { createAppContainer, createStackNavigator, createSwitchNavigator } from 'react-navigation';
+import AuthLoading from './Helper/AuthLoading';
+import TopTab from './Main/TopTab';
+
+import Login from './Authentication/Login';
+import CreateAccount from './Authentication/CreateAccount';
+import ChooseAccount from './Authentication/ChooseAccount';
+import CreateManagerAccount from './Authentication/ManagerAccount';
+import CreateScoutAccount from './Authentication/ScoutAccount';
+import ConfirmManager from './Authentication/ConfirmManager';
+import ConfirmScout from './Authentication/ConfirmScout';
+
+import Clubs from './Main/Clubs';
+import AddStats from './Main/AddStats';
+import AddClub from './Main/AddClub';
+import Profile from './Main/Profile';
+import PlayerProfile from './Main/PlayerProfile';
+import Managers from './Main/Managers';
+import ClubOutlay from './Main/ClubOutlay';
+import Scouts from './Main/Scouts';
+import AddPlayer from './Main/AddPlayer';
+import DetailedUser from './Main/DetailedUser';
+import Feedback from './Main/Feedback';
+import About from './Main/About';
+
 import color from '../res/styles/color';
+import MyClubPlayers from './Main/MyClubPlayers';
+import EditPlayer from './Main/EditPlayer';
 
 
-const HomeScreen = (props) => (
-    <View>
-        <StatusBar backgroundColor={ color.statusBarColor } barStyle='light-content' />
-        <PlayerList navigation={ props.navigation } />
-    </View>    
-)
-
-const ViewsScreen = (props) => (
-    <ViewsList navigation={ props.navigation } />
-)
-
-const MoreScreen = (props) => (
-    <More navigation={ props.navigation } />
-)
-
-const TopTabNavigator = createMaterialTopTabNavigator(
+const Auth = createStackNavigator(
     {
-        Home: HomeScreen,
-        Views: ViewsScreen,
-        More: MoreScreen,
-    },
-    {
-        initialRouteName: "Home",
-        tabBarOptions: {
-            indicatorStyle: {
-                backgroundColor: "#FFFFFF",
-            },
-            style: {
-                backgroundColor: color.theme,
-            },
-        },
-    }
-);
-
-const TopTab = createAppContainer(TopTabNavigator);
-
-const stackNavigator = createStackNavigator(
-    {
-        Main: {
-            screen: TopTab,
-            navigationOptions: () => ({headerTitle: "Sports Scout", ...navConfig, headerTitleStyle: {
-                paddingLeft: '5%',
-                flex: 1,
-            }})
-        },
         Login: {
             screen: Login,
-            navigationOptions: () => ({headerTitle: "Sports Scout", ...navConfig})
-        },
-        PostView: {
-            screen: PostView,
-            navigationOptions: () => ({headerTitle: "post", ...navConfig})
-        },
-        Replies: {
-            screen: ReplyList,
-            navigationOptions: () => ({headerTitle: "replies", ...navConfig})
-        },
-        About: {
-            screen: About,
-            navigationOptions: () => ({headerTitle: "about", ...navConfig})
-        },
-        TechnicalStaff: {
-            screen: TechnicalList,
-            navigationOptions: () => ({headerTitle: "technical staff", ...navConfig})
+            navigationOptions: () => ({headerTitle: "login", ...navConfig})
         },
         CreateAccount: {
             screen: CreateAccount,
             navigationOptions: () => ({headerTitle: "create account", ...navConfig})
         },
-        Matches: {
-            screen: Matches,
-            navigationOptions: () => ({headerTitle: "matches", ...navConfig})
+        ChooseAccount: {
+            screen: ChooseAccount,
+            navigationOptions: () => ({headerTitle: "choose account", ...navConfig})
+        },
+        CreateManagerAccount: {
+            screen: CreateManagerAccount,
+            navigationOptions: () => ({headerTitle: "create manager account", ...navConfig})
+        },
+        CreateScoutAccount: {
+            screen: CreateScoutAccount,
+            navigationOptions: () => ({headerTitle: "create scout account", ...navConfig})
+        },
+        ConfirmManager: {
+            screen: ConfirmManager,
+            navigationOptions: () => ({headerTitle: "confirm account", ...navConfig})
+        },
+
+        ConfirmScout: {
+            screen: ConfirmScout,
+            navigationOptions: () => ({headerTitle: "confirm account", ...navConfig})
+        },
+    },
+    {
+        mode: 'modal',
+        headerMode: 'none',
+        headerTransitionPreset: 'fade-in-place',
+    }
+)
+
+
+const Main = createStackNavigator(
+    {    
+        TopBar: {
+            screen: TopTab,
+            navigationOptions: () => ({headerTitle: "SPORTS SCOUT", ...navConfig})
+        },
+        About: {
+            screen: About,
+            navigationOptions: () => ({headerTitle: "about sports scout", ...navConfig})
         },
         Profile: {
             screen: Profile,
             navigationOptions: () => ({headerTitle: "profile", ...navConfig})
         },
+        ClubOutlay: {
+            screen: ClubOutlay,
+            navigationOptions: () => ({headerTitle: "club", ...navConfig})
+        },
+        PlayerProfile: {
+            screen: PlayerProfile,
+            navigationOptions: () => ({...navConfig})
+        },
+        Managers: {
+            screen: Managers,
+            navigationOptions: () => ({headerTitle: "managers", ...navConfig})
+        },
+        Scouts: {
+            screen: Scouts,
+            navigationOptions: () => ({headerTitle: "scouts", ...navConfig})
+        },
         Feedback: {
             screen: Feedback,
             navigationOptions: () => ({headerTitle: "feedack", ...navConfig})
+        },
+        DetailedUser: {
+            screen: DetailedUser,
+            navigationOptions: () => ({headerTitle: "details", ...navConfig})
         },
         Clubs: {
             screen: Clubs,
@@ -114,51 +114,37 @@ const stackNavigator = createStackNavigator(
             screen: AddClub,
             navigationOptions: () => ({headerTitle: "add club", ...navConfig})
         },
-        Players: {
-            screen: PlayerList,
-
-            navigationOptions: () => ({headerTitle: "players", ...navConfig})
-        },
         AddPlayer: {
             screen:AddPlayer,
 
             navigationOptions: () => ({headerTitle: "add player", ...navConfig})
         },
-        Statistics: {
-            screen: Statistics,
-            navigationOptions: () => ({headerTitle: "statistics", ...navConfig})
+        MyClubPlayers: {
+            screen:MyClubPlayers,
+
+            navigationOptions: () => ({headerTitle: "my club players", ...navConfig})
         },
-        TableStandings: {
-            screen: TableStandings,
-            navigationOptions: () => ({headerTitle: "table standings", ...navConfig})
+        EditPlayer: {
+            screen:EditPlayer,
+
+            navigationOptions: () => ({headerTitle: "my club players", ...navConfig})
         },
-        ChooseAccount: {
-            screen: ChooseAccount,
-            navigationOptions: () => ({headerTitle: "choose account", ...navConfig})
-        },
-        CreateManagerAccount: {
-            screen: CreateManagerAccount,
-            navigationOptions: () => ({headerTitle: "manager account", ...navConfig})
-        },
-        CreateScoutAccount: {
-            screen: CreateScoutAccount,
-            navigationOptions: () => ({headerTitle: "scout account", ...navConfig})
-        },
-        ConfirmAccount: {
-            screen: ConfirmAccount,
-            navigationOptions: () => ({headerTitle: "confirm account", ...navConfig})
+        AddStats: {
+            screen: AddStats,
+            navigationOptions: () => ({headerTitle: "add stats", ...navConfig})
         },
     },
     {
         mode: 'modal',
         headerMode: 'float',
+        initialRouteName: 'TopBar',
         headerTransitionPreset: 'fade-in-place',
     }
 )
 
 const navConfig = {
     headerStyle: {
-        backgroundColor: color.theme,
+        backgroundColor: color.armyGreen,
         color: 'white',
         tintColor: 'white',
         elevation: 0,
@@ -173,4 +159,14 @@ const navConfig = {
     headerTintColor: 'white',
 }
 
-export default createAppContainer(stackNavigator);
+
+export default createAppContainer(createSwitchNavigator(
+    {
+        AuthLoading: AuthLoading,
+        Auth: Auth,
+        Main: Main,
+    },
+    {
+        initialRouteName: 'AuthLoading',
+    }
+))
