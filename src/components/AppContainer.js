@@ -26,6 +26,11 @@ import About from './Main/About';
 import color from '../res/styles/color';
 import MyClubPlayers from './Main/MyClubPlayers';
 import EditPlayer from './Main/EditPlayer';
+import { FilterPlayers } from './Main/FilterPlayers';
+import { GoalKeepers } from './Main/GoalKeepers';
+import { Defenders } from './Main/Defenders';
+import { Midfielders } from './Main/Midfielders';
+import { Forwards } from './Main/Forwards';
 
 
 const Auth = createStackNavigator(
@@ -81,6 +86,26 @@ const Main = createStackNavigator(
         Profile: {
             screen: Profile,
             navigationOptions: () => ({headerTitle: "profile", ...navConfig})
+        },
+        FilterPlayers: {
+            screen: FilterPlayers,
+            navigationOptions: () => ({headerTitle: "filter players", ...navConfig})
+        },
+        GoalKeepers: {
+            screen: GoalKeepers,
+            navigationOptions: () => ({headerTitle: "goal keepers", ...navConfig})
+        },
+        Defenders: {
+            screen: Defenders,
+            navigationOptions: () => ({headerTitle: "defenders", ...navConfig})
+        },
+        Midfielders: {
+            screen: Midfielders,
+            navigationOptions: () => ({headerTitle: "midfielders", ...navConfig})
+        },
+        Forwards: {
+            screen: Forwards,
+            navigationOptions: () => ({headerTitle: "forwards", ...navConfig})
         },
         ClubOutlay: {
             screen: ClubOutlay,

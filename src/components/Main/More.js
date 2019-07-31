@@ -150,6 +150,24 @@ class More extends Component {
 
                     <TouchableOpacity
                         style={ buttons.rectLightGreyButton }
+                        onPress={ () => this.props.navigation.navigate('FilterPlayers') }
+                    >
+                        <View style={ layout.columnSeparatorGrey }>
+                            <View style={ layout.column20Grey }>
+                                <Image
+                                    style={ image.icon }
+                                    source={require('../../res/icons/player.png')}
+                                />
+                            </View>
+    
+                            <View style={ layout.column80Grey } >
+                                <Text style={ text.leftPaddedMediumBlack }>Filter Players</Text>
+                            </View>
+                        </View>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        style={ buttons.rectLightGreyButton }
                         onPress={ () => this.props.navigation.navigate('Managers') }
                     >
                         <View style={ layout.columnSeparatorGrey }>

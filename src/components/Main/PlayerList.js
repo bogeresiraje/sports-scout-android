@@ -144,7 +144,7 @@ import image from '../../res/styles/image';
      }
  }
 
- const Player = ({ player, navigation }) => (
+ export const Player = ({ player, navigation }) => (
      <TouchableOpacity
         onPress={ () => navigation.navigate('PlayerProfile', { 'playerId': player.id,
             'playerName': `${player.first_name} ${player.last_name}`

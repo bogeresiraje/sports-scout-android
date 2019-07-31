@@ -108,7 +108,7 @@ export default class extends Component {
         formData.append('tackles', this.state.tackles);
         formData.append('fouls', this.state.fouls);
         formData.append('shots_against', this.state.shotsAgainst);
-        formData.append('shots_against_blocked', this.state.shotsAgainstBlocked)
+        formData.append('shots_against_blocked', this.state.shotsAgainstBlocked);
         formData.append('goals_against', this.state.goalsAgainst);
         formData.append('saves', this.state.saves);
 
